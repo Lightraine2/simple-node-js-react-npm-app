@@ -18,7 +18,21 @@ pipeline {
             }
         }
 
-        // This audit works well, in that it breaks the build if you enforce the audit level.
+        // This audit works well, in that it breaks the build if you enforce the audit level. This is a node.js feature breaking the build. 
+
+        stage('SonarQube SAST') {
+            steps {
+                sh 'echo "This is where the SonarQube Plugin needs to be integrated"'
+                input message: 'No live SonarQube integration - Click "Proceed to skip"'
+            }
+        }
+
+        stage('Burp Pro DAST') {
+            steps {
+                sh 'Calling burp scanner'
+                sh './jenkins/scripts/burp.sh'
+            }
+        }
 
         stage('Test') {
             steps {
