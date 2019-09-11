@@ -10,13 +10,16 @@ pipeline {
                 sh 'npm install'
             }
         }
-        // stage('Audit') {
-        //     steps {
-        //         sh 'echo "Auditing and updating libraries....."'
-        //         sh 'npm audit fix --json'
-        //         sh 'npm audit --audit-level=high'
-        //     }
-        // }
+        stage('Audit') {
+            steps {
+                sh 'echo "Auditing and updating libraries....."'
+                sh 'npm audit fix --json'
+                // sh 'npm audit --audit-level=high'
+            }
+        }
+
+        // This audit works well, in that it breaks the build if you enforce the audit level.
+
         stage('Test') {
             steps {
                 sh './jenkins/scripts/test.sh'
