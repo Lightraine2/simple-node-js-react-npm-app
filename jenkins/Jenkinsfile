@@ -29,7 +29,7 @@ pipeline {
 
         stage('Burp Pro DAST') {
             steps {
-                sh 'Calling burp scanner'
+                sh 'echo "Calling burp scanner"'
                 sh './jenkins/scripts/burp.sh'
             }
         }
