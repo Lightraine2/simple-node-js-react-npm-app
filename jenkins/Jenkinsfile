@@ -5,12 +5,12 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage('Build') {
+        stage('SCM & Build') {
             steps {
                 sh 'npm install'
             }
         }
-        stage('Audit') {
+        stage('Dependency Audit') {
             steps {
                 sh 'echo "Auditing and updating libraries....."'
                 sh 'npm audit fix --json'

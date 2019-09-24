@@ -13,13 +13,13 @@ class App extends Component {
         <p className="App-intro">
           So this is just the React default app home page. Using this as an example for CI/CD integration with security tools. Once the pipeline is set up, I'll throw in some intentional vulnerabilities to demonstrate alerting capabilities and potential build-breaking problems.
           <br></br><br></br>
-          Edit <code>src/App.js</code> and save to reload.
+          
           <br></br><br></br>
           The pipeline should look as follows:
           <br></br><br></br>
-          Git push > Jenkins Pipeline > Code Review > Burp Scan > Deploy to Artifactory/AppServer
+          <code>Git push > Jenkins Pipeline > Code Review > Burp Scan > Deploy to Artifactory/AppServer</code>
           <br></br><br></br>
-          This is test number 2 - does this update?
+
         </p>
       </div>
     );
