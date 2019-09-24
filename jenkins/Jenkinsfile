@@ -1,25 +1,28 @@
 pipeline {
+    
     agent any
     
     environment {
         CI = 'true'
     }
+
     stages {
+    
         stage('SCM & Build') {
             steps {
                 sh 'npm install'
             }
         }
+    
         stage('Dependency Audit') {
             steps {
                 sh 'echo "Auditing and updating libraries....."'
+                sh 'npm audit'
                 sh 'npm audit fix --json'
                 // sh 'npm audit --audit-level=high'
             }
         }
-
-        // This audit works well, in that it breaks the build if you enforce the audit level. This is a node.js feature breaking the build. 
-
+ 
         stage('SonarQube SAST') {
             steps {
                 sh 'echo "This is where the SonarQube Plugin needs to be integrated"'
@@ -29,7 +32,7 @@ pipeline {
 
         stage('Burp Pro DAST') {
             steps {
-                sh 'echo "Calling burp scanner"'
+                sh 'echo "Requesting scan via Burp API"'
                 sh '/home/laurence/apiScan.sh'
             }
         }
@@ -39,6 +42,7 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+
         stage('Deliver') {
             steps {
                  sh 'npm start'
@@ -47,5 +51,6 @@ pipeline {
                 // sh './jenkins/scripts/kill.sh'
             }
         }
+
     }
 }
