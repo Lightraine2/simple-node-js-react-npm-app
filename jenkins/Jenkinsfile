@@ -23,7 +23,7 @@ pipeline {
         stage('SonarQube SAST') {
             steps {
                 sh 'echo "This is where the SonarQube Plugin needs to be integrated"'
-                input message: 'No live SonarQube integration - Click "Proceed to skip"'
+                // input message: 'No live SonarQube integration - Click "Proceed to skip"'
             }
         }
 
